@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/10/2020 03:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Exame" table="exame" catalog="medexam" optimistic-lock="version">
+        <id name="idExame" type="int">
+            <column name="idExame" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pessoa" class="entidades.Pessoa" fetch="select">
+            <column name="idPessoa" />
+        </many-to-one>
+        <many-to-one name="tipoExame" class="entidades.TipoExame" fetch="select">
+            <column name="idTipo_exame" />
+        </many-to-one>
+        <property name="dataPostagem" type="date">
+            <column name="data_postagem" length="10" />
+        </property>
+        <property name="dataValidade" type="date">
+            <column name="data_validade" length="10" />
+        </property>
+        <property name="arquivo" type="string">
+            <column name="arquivo" length="400" />
+        </property>
+    </class>
+</hibernate-mapping>

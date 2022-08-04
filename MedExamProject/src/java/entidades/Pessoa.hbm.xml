@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/10/2020 03:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Pessoa" table="pessoa" catalog="medexam" optimistic-lock="version">
+        <id name="idPessoa" type="int">
+            <column name="idPessoa" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cidade" class="entidades.Cidade" fetch="select">
+            <column name="idCidade" />
+        </many-to-one>
+        <property name="nomePessoa" type="string">
+            <column name="nome_pessoa" length="80" />
+        </property>
+        <property name="cpf" type="string">
+            <column name="cpf" length="12" />
+        </property>
+        <property name="rg" type="string">
+            <column name="rg" length="12" />
+        </property>
+        <property name="dataNasc" type="date">
+            <column name="data_nasc" length="10" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="80" />
+        </property>
+        <property name="adm" type="java.lang.Boolean">
+            <column name="adm" />
+        </property>
+        <property name="rua" type="string">
+            <column name="rua" length="80" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="80" />
+        </property>
+        <property name="numero" type="string">
+            <column name="numero" length="10" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="complemento" length="80" />
+        </property>
+        <set name="exames" table="exame" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPessoa" />
+            </key>
+            <one-to-many class="entidades.Exame" />
+        </set>
+        <set name="telefones" table="telefone" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="idPessoa" />
+            </key>
+            <one-to-many class="entidades.Telefone" />
+        </set>
+    </class>
+</hibernate-mapping>

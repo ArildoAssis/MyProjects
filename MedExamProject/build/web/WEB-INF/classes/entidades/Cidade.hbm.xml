@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/10/2020 03:51:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.Cidade" table="cidade" catalog="medexam" optimistic-lock="version">
+        <id name="idCidade" type="int">
+            <column name="idCidade" />
+            <generator class="identity" />
+        </id>
+        <property name="nomeCidade" type="string">
+            <column name="nome_cidade" length="80" />
+        </property>
+        <property name="cep" type="string">
+            <column name="cep" length="9" />
+        </property>
+        <set name="pessoas" table="pessoa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCidade" />
+            </key>
+            <one-to-many class="entidades.Pessoa" />
+        </set>
+    </class>
+</hibernate-mapping>
